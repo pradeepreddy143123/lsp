@@ -13,7 +13,7 @@ int main()
 	int val;
 	char name[256] = "Unknown";
 
-	fd1=open("/dev/input/event17",O_RDONLY);
+	fd1=open("/dev/input/event0",O_RDONLY);
 	if(fd1<0)
 	{
 		perror("open Fails");

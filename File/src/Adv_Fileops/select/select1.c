@@ -15,10 +15,10 @@ int main()
 	char buff[4099];
 	struct input_event ev;
 
-	fd1=open("/dev/input/event3",O_RDONLY);
+	fd1=open("/dev/input/event1",O_RDONLY); // Mouse
 	if(fd1<0)
 		printf("error while open the file event1\n");
-	fd2=open("/dev/input/event17",O_RDONLY);
+	fd2=open("/dev/input/event0",O_RDONLY);// Keyboard
 	if(fd2<0)
 		printf("error while open the file event2\n");
 	
@@ -33,19 +33,19 @@ int main()
 		retfd=select(FD_SETSIZE,&read_fileset,NULL,NULL,0);
 		printf ("retfd:%d\n",retfd);
 		if(retfd<0){
-			printf("select is failed\n");
+				printf("select is failed\n");
 			return -1;
 		}
 		/* Mouse data event0  */
-		if(FD_ISSET(fd2,&read_fileset)){
+		if(FD_ISSET(fd1,&read_fileset)){
 			printf("data is available on mouse event0\n");
-			ret = read(fd2,&ev,sizeof(struct input_event));
+			ret = read(fd1,&ev,sizeof(struct input_event));
         		printf("ret:%d ev.type:%d ev.code:%d ev.value:%d\n",ret,ev.type,ev.code,ev.value);
 		}
-		/* Power Button event1  */
-		if(FD_ISSET(fd1,&read_fileset)){
-			printf("Power Button Data\n");
-			ret = read(fd1,&ev,sizeof(struct input_event));
+		/* Keypad event1  */
+		if(FD_ISSET(fd2,&read_fileset)){
+			printf("Keyboard event\n");
+			ret = read(fd2,&ev,sizeof(struct input_event));
         		printf("ret:%d ev.type:%d ev.code:%d ev.value:%d\n",ret,ev.type,ev.code,ev.value);
 		}
 	}
