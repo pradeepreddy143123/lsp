@@ -23,22 +23,28 @@
 ####	creation of executable file using Dynamic linker
 `$ gcc hello.c -o hello-dyn (by default)`
 
-####	cross verify executable file with "file" command
+####	cross verify dynamic executable file with "file" command
 `$ file hello-dyn`
 
-	hello-dyn: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=847ece746b56cba30c2cca74ef5fb73245b351c5, not stripped
+hello-dyn: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), **dynamically linked**, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=847ece746b56cba30c2cca74ef5fb73245b351c5, not stripped
 	
 	
 ####	creation of executable file using Static linker
 `$ gcc -static hello.c -o hello-static`
 	
-####	cross verify executable file with "file" command
+####	cross verify static executable file with "file" command
 `$ file hello-static`
 
-	hello-static: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, for GNU/Linux 3.2.0, BuildID[sha1]=fff77a5ea4dfa605b729654d58bbd132d01ff9fd, not stripped
+hello-static: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), **statically linked**, for GNU/Linux 3.2.0, BuildID[sha1]=fff77a5ea4dfa605b729654d58bbd132d01ff9fd, not stripped
 
 ####	Executable and Linkable Format (ELF) is a standard binary file format.
 `$ readelf -a hello | more (readelf is a details of ELF file)`
+
+#### compare static & dynamic image sizes
+
+    $ ls -l
+    -rwxrwxr-x 1 km km   8304 Jan 26 12:01 hello-dyn  (8.3KB)
+    -rwxrwxr-x 1 km km 845120 Jan 26 12:01 hello-stat (845KB)
 
 ## 3. Create User define Libraries
 
@@ -54,6 +60,9 @@
 	Step3: Use UNIX archive tools create library image.
 		$ ar -rcs libcalc.a add.o sub.o
 
+	$ file libcalc.a
+	libourown.a: current ar archive
+	
 ### 3.2. Procedure for Creation of Dynamic libraries (Shared Libraries)
 
 	Step1: Implementaion of Source code.
@@ -65,6 +74,9 @@
 		$ gcc -c -fpic sub.c
 	Step3:
 		$ gcc -shared -o libcalc.so add.o sub.o
+
+	$ file libcalc.so
+	libourown.so: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped
 
 ## 4. Telling GCC where to find the User defiend header file:
 
@@ -79,11 +91,8 @@
 ## 6. Making the library available at runtime:
 
 	LD_LIBRARY_PATH=<path> means binary execution time checks the library PATH.
-	$ file libcalc.a
-	libourown.a: current ar archive
 
-	$ file libcalc.so
-	libourown.so: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped
+
 
 ## 7.Examples:
 
