@@ -1,4 +1,3 @@
-
 <!-- vim-markdown-toc GFM -->
 
 * [1. Static Library vs Dynamic Library](#1-static-library-vs-dynamic-library)
@@ -6,29 +5,40 @@
 * [3. Create User define Libraries](#3-create-user-define-libraries)
 	* [3.1. Procedure for Creation of static libraries](#31-procedure-for-creation-of-static-libraries)
 	* [3.2. Procedure for Creation of Dynamic libraries (Shared Libraries)](#32-procedure-for-creation-of-dynamic-libraries-shared-libraries)
-* [5. Telling GCC where to find the User defiend header file:](#5-telling-gcc-where-to-find-the-user-defiend-header-file)
-* [6. Telling GCC where to find the shared library:](#6-telling-gcc-where-to-find-the-shared-library)
-* [7. Making the library available at runtime:](#7-making-the-library-available-at-runtime)
-* [8.Examples:](#8examples)
+* [4. Telling GCC where to find the User defiend header file:](#4-telling-gcc-where-to-find-the-user-defiend-header-file)
+* [5. Telling GCC where to find the shared library:](#5-telling-gcc-where-to-find-the-shared-library)
+* [6. Making the library available at runtime:](#6-making-the-library-available-at-runtime)
+* [7.Examples:](#7examples)
 
 <!-- vim-markdown-toc -->
 
 ## 1. Static Library vs Dynamic Library
 
-	Static Linkers use static libraries which are appended the executable image at build time.
-	Dynamic Linkers use dynamic libraries which carrys symbolic reference in exectable and physically loaded at runtime
-	Size is Different
+* Static Linkers use static libraries which are appended the executable image at build time.
+* Dynamic Linkers use dynamic libraries which carrys symbolic reference in exectable and physically loaded at runtime
+* Size is Different
 
 ## 2. Static Linker vs Dynamic Linker
 
-	Executale and Linkable Format (ELF) is a standard binary file format.
-	$ readelf -a hello | more (readelf is a details of ELF file)
+####	creation of executable file using Dynamic linker
+`$ gcc hello.c -o hello-dyn (by default)`
 
-	creation of exec file using Dynamic linker
-	$ gcc hello.c -o hello (by default)
+####	cross verify executable file with "file" command
+`$ file hello-dyn`
 
-	creation of exec file using Static linker
-	$ gcc -static hello.c -o hello
+	hello-dyn: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=847ece746b56cba30c2cca74ef5fb73245b351c5, not stripped
+	
+	
+####	creation of executable file using Static linker
+`$ gcc -static hello.c -o hello-static`
+	
+####	cross verify executable file with "file" command
+`$ file hello-static`
+
+	hello-static: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, for GNU/Linux 3.2.0, BuildID[sha1]=fff77a5ea4dfa605b729654d58bbd132d01ff9fd, not stripped
+
+####	Executable and Linkable Format (ELF) is a standard binary file format.
+`$ readelf -a hello | more (readelf is a details of ELF file)`
 
 ## 3. Create User define Libraries
 
@@ -56,17 +66,17 @@
 	Step3:
 		$ gcc -shared -o libcalc.so add.o sub.o
 
-## 5. Telling GCC where to find the User defiend header file:
+## 4. Telling GCC where to find the User defiend header file:
 
 	-I <USER DEFINED HEADER PATH>
 
-## 6. Telling GCC where to find the shared library:
+## 5. Telling GCC where to find the shared library:
 	
 	Why -l<library name>, -L and LD_LIBRARY_PATH?
 	-l<library name> means compiler search the library
 	-L <path> means gcc compiler checks libraries at compilation time in path location.
 
-## 7. Making the library available at runtime:
+## 6. Making the library available at runtime:
 
 	LD_LIBRARY_PATH=<path> means binary execution time checks the library PATH.
 	$ file libcalc.a
@@ -75,7 +85,7 @@
 	$ file libcalc.so
 	libourown.so: ELF 32-bit LSB shared object, Intel 80386, version 1 (SYSV), dynamically linked, not stripped
 
-## 8.Examples:
+## 7.Examples:
 
 	libraries/addsub_lib: how to create static and dynamic libraries
 
