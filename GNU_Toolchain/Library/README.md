@@ -3,8 +3,9 @@
 
 * [1. Static Library vs Dynamic Library](#1-static-library-vs-dynamic-library)
 * [2. Static Linker vs Dynamic Linker](#2-static-linker-vs-dynamic-linker)
-* [3. Procedure for Creation of static libraries](#3-procedure-for-creation-of-static-libraries)
-* [4. Procedure for Creation of Dynamic libraries (Shared Libraries)](#4-procedure-for-creation-of-dynamic-libraries-shared-libraries)
+* [3. Create User define Libraries](#3-create-user-define-libraries)
+	* [3.1. Procedure for Creation of static libraries](#31-procedure-for-creation-of-static-libraries)
+	* [3.2. Procedure for Creation of Dynamic libraries (Shared Libraries)](#32-procedure-for-creation-of-dynamic-libraries-shared-libraries)
 * [5. Telling GCC where to find the User defiend header file:](#5-telling-gcc-where-to-find-the-user-defiend-header-file)
 * [6. Telling GCC where to find the shared library:](#6-telling-gcc-where-to-find-the-shared-library)
 * [7. Making the library available at runtime:](#7-making-the-library-available-at-runtime)
@@ -14,9 +15,9 @@
 
 ## 1. Static Library vs Dynamic Library
 
-	Size is Different
 	Static Linkers use static libraries which are appended the executable image at build time.
 	Dynamic Linkers use dynamic libraries which carrys symbolic reference in exectable and physically loaded at runtime
+	Size is Different
 
 ## 2. Static Linker vs Dynamic Linker
 
@@ -29,7 +30,9 @@
 	creation of exec file using Static linker
 	$ gcc -static hello.c -o hello
 
-## 3. Procedure for Creation of static libraries
+## 3. Create User define Libraries
+
+### 3.1. Procedure for Creation of static libraries
 
 	Step1: Implementaion of Source code.
 		add.c
@@ -41,7 +44,7 @@
 	Step3: Use UNIX archive tools create library image.
 		$ ar -rcs libcalc.a add.o sub.o
 
-## 4. Procedure for Creation of Dynamic libraries (Shared Libraries)
+### 3.2. Procedure for Creation of Dynamic libraries (Shared Libraries)
 
 	Step1: Implementaion of Source code.
 		add.c
