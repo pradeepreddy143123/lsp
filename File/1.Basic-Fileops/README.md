@@ -6,8 +6,8 @@
        O_RDONLY | O_WRONLY is a logical error, and certainly does not have
        the same meaning as O_RDWR.
 
-File operations Examples:
--------------------------
+## File operations Examples:
+
 1. write1.c - A program that uses write system call with proper ERROR Handling.
 
 2. read1.c - A program that uses read system call with proper ERROR Handling.
@@ -34,55 +34,13 @@ the file input and output.
 8. stat.c - A Program that shows file information. 
 	stat.c = ls -l
 
-Mini Project -  File Operations:
--------------------------------
-Project 1 : mycat.c - A program that works same as cat command line application.
 
-1. implement command line arguments
-2. proper error handling  
-
-Project 2: mycp.c 
-
-Origional copy command behavior:
--------------------------------
-case 1: with out any arguments
-------
-$ cp
-cp: missing file operand
-Try 'cp --help' for more information.
-
-case 2: one argument 
-------
-$ cp abc
-cp: missing destination file operand after ‘abc’
-Try 'cp --help' for more information.
-
-case 3: two arguments - both are regular files
-------
-3a: source file name 123 is exist in current directory.
-$ cat 123
-kernelmasters
-$ cp 123 abc
-$ cat abc
-kernelmasters
-
-3b: source file name 123 is not exist in current directory.
-$ cp 123 abc
-cp: cannot stat ‘123’: No such file or directory
-
-case 4: two arguments - source file is regular, destination is directory
-------
-$ cp abc test
-
-case 5: threee arguments - all arguemnts are regular files
-------
-$ cp abc 123 xyz
-cp: target ‘xyz’ is not a directory
-
-case 6: threee arguments - last argument is directory 
-------
-$ cp abc 123 test
-
-case 7: three arguemnts - last argument is home directory 
-------
-$ cp abc 123 ~/test
+## Lab Assignments: Basic File Operations: (open(), read(), write(), close())
+1.	Write a C program that makes a copy of a file using standard I/O and system calls.  Explain the Difference between System Call and Standard Library.
+2.	Write a system programming your own version of getchar() standard C Library?
+3.	Write a system programming your own version of cat command?
+4.	Write a system programming your own version of echo command \?
+5.	Write a system programming your own version of cp command?
+6.	Write a system programming your own version of head & tail command?
+7.	Write a system programming your own version of wc command?
+8.	Write a system programming your own version of du & touch command?
