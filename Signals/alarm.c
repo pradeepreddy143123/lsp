@@ -28,7 +28,7 @@ int main()
       exit(1);
     case 0:
       /* child */
-        sleep(5);
+        sleep(60);
         kill(getppid(), SIGALRM);
         exit(0);
     }

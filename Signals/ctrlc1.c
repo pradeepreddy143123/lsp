@@ -12,7 +12,7 @@
 void fun(int sig)
 {
     printf("FUN! - I got signal %d\n", sig);
-   (void) signal(SIGINT, SIG_DFL);
+//   (void) signal(SIGINT, SIG_DFL);
 }
 
 /*  The main function has to intercept the SIGINT signal generated when we type Ctrl-C .
@@ -21,7 +21,7 @@ void fun(int sig)
 
 int main()
 {
-    (void) signal(SIGINT, fun);
+    (void) signal(SIGINT, fun); // user defiend signal handler init
 
     while(1) {
         printf("Hello World!\n");
