@@ -2,9 +2,23 @@
 
 # GNU Makefile
 
-	Compilation of multiple source files is possible in 2 ways. 
-	1. Manual Method. 
-	2. Automation Method: uses GNU Make tool.  
+	Compilation of multiple source files is possible in 2 cases.
+
+	Case 1: Build all the source files at a time
+	    To build 'n' No.of source files, one command is sufficent
+		Example: Two source files (main.c, add.c) ; only one command
+		$ gcc main.c add.c -o main
+
+	Case 2: Build each source file independently
+		To build 'n' no. of source files, n+1 commands needed.
+		Example: Two source files (main.c, add.c) ; 2+1 = 3 commands 
+		1. $ gcc -c main.c
+		2. $ gcc -c add.c
+		3. $ gcc main.o add.o -o main
+	
+	Case 2 is possible in two ways.
+	Case 2a: Manual Method. 
+	Case 2b: Automation Method: uses GNU Make tool.  
 
 
 ## What is Makefile?
