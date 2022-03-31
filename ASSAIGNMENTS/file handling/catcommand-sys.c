@@ -14,9 +14,11 @@ printf ("file name :%s",argv[1]);
 
 //opening a file
 
-int openret,readret,writeret;
+int openret,readret,writeret,i=1,j=0;
 char *buff;
 buff=(char *)malloc(sizeof(char));
+while(argv[i])
+{
 openret= open(argv[1],O_RDONLY);
 if(openret<0)
 {
@@ -46,11 +48,14 @@ exit(0);
 }
 
 //closing a file
-
-if(close(openret))
+j=close(openret);
+if(j<0)
 {
 printf("close fails\n");
 exit(0);
 }
+i++;
+}
+free(buff);
 return 0;
 }
