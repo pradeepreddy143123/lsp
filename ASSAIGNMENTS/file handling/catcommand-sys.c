@@ -1,3 +1,7 @@
+/*
+write own version of cat command
+*/
+
 #include<stdio.h>
 #include<unistd.h>
 #include<errno.h>
