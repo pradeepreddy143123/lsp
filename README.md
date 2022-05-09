@@ -7,4 +7,3 @@ Description of various folders:
 + Process: Process Management stuff for process system calls, signals & Threads.
 + Sync: Synchronization stuff for Thread & Process synchronization.
 + IPC: Inter Process Communicaiton stuff for Pipes, Name pipes, Shared Memory and socket programming
-
